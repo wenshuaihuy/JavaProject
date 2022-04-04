@@ -138,8 +138,6 @@ public class Test1 {
             arr[left + i1] = help[i1];
         }
         return arr;
-
-
     }
 
 
