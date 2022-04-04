@@ -11,10 +11,11 @@ public class Test1 {
         int[] ints2 = {1, 1, 1, 2, 2, 3, 3, 4};
         printOddTimesNum1(ints1);
         printOddTimesNum2(ints2);
-        int[] ints = generateRandomArray(5, 100);
+        int[] ints = generateRandomArray(10, 100);
         for (int anInt : ints) {
             System.out.println("\t"+anInt);
         }
+        System.out.println("maxNum==="+process(ints, 0, 4));
     }
 
 
@@ -72,6 +73,20 @@ public class Test1 {
             ints[i] = (int) ((maxValue + 1) * Math.random()) - (int) ((maxValue) * Math.random());
         }
         return ints;
+    }
+
+    /**
+     * recursively find the maximum
+     */
+    public static int process(int[] arr, int left, int right) {
+        if (left == right) {
+            return arr[left];
+        }
+        //>>右运算，num除以2
+        int mid = left + ((right - left) >> 1);
+        int leftMaxNum = process(arr, left, mid);
+        int rightMaxNum = process(arr, mid + 1, right);
+        return Math.max(leftMaxNum, rightMaxNum);
     }
 
 
