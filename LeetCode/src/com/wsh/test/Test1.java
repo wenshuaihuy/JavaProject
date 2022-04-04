@@ -1,5 +1,7 @@
 package com.wsh.test;
 
+import java.util.Arrays;
+
 /**
  * @author wsh
  */
@@ -9,6 +11,10 @@ public class Test1 {
         int[] ints2 = {1, 1, 1, 2, 2, 3, 3, 4};
         printOddTimesNum1(ints1);
         printOddTimesNum2(ints2);
+        int[] ints = generateRandomArray(5, 100);
+        for (int anInt : ints) {
+            System.out.println("\t"+anInt);
+        }
     }
 
 
@@ -45,6 +51,27 @@ public class Test1 {
             }
         }
         System.out.println(onlyOne + "   " + (onlyOne ^ ero));
+    }
+
+
+    /**
+     * Sort from system
+     */
+    public static void systemSort(int[] arr) {
+        Arrays.sort(arr);
+
+    }
+
+    /**
+     * create random array
+     */
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        int[] ints = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < ints.length; i++) {
+            //范围是+maxValue到-maxValue
+            ints[i] = (int) ((maxValue + 1) * Math.random()) - (int) ((maxValue) * Math.random());
+        }
+        return ints;
     }
 
 
