@@ -9,15 +9,27 @@ public class Test1 {
     public static void main(String[] args) {
         int[] ints1 = {1, 1, 2, 2, 3, 3, 6};
         int[] ints2 = {1, 1, 1, 2, 2, 3, 3, 4};
+        //找出有序数组中出现一次奇数次的数字
         printOddTimesNum1(ints1);
+        //找出有序数组中出现两次奇数次的数
         printOddTimesNum2(ints2);
+        //生成随机数组
         int[] ints = generateRandomArray(7, 100);
         for (int anInt : ints) {
             System.out.println("\t" + anInt);
         }
+        //找出最大值 用递归
         System.out.println("maxNum===" + process(ints, 0, 6));
 
-        process2(ints, 0, 6);
+        //归并排序
+        int[] ints3 = process2(ints, 0, 6);
+        for (int i : ints3) {
+            System.out.println("i3==="+i);
+        }
+
+        //小和问题
+        int[] ints4 = {1,3,4,2,5};
+        System.out.println("小和问题"+ process3(ints4, 0, 4));
     }
 
 
@@ -90,7 +102,8 @@ public class Test1 {
         int mid = left + ((right - left) >> 1);
         int leftMaxNum = process(arr, left, mid);
         int rightMaxNum = process(arr, mid + 1, right);
-        return Math.max(leftMaxNum, rightMaxNum);
+        int max = Math.max(leftMaxNum, rightMaxNum);
+        return max;
     }
 
     /**
@@ -100,16 +113,19 @@ public class Test1 {
      * @param left
      * @param right
      */
-
-    public static void process2(int[] arr, int left, int right) {
+    public static int[] process2(int[] arr, int left, int right) {
         if (left == right) {
-            return;
+            return null;
         }
         //>>右运算，num除以2
         int mid = left + ((right - left) >> 1);
-        int leftMaxNum = process(arr, left, mid);
-        int rightMaxNum = process(arr, mid + 1, right);
-        merge(arr, left, right, mid);
+        //左侧排序
+        process2(arr, left, mid);
+        //右侧排序
+        process2(arr, mid + 1, right);
+        //最后合并排序
+        int[] merge = merge(arr, left, right, mid);
+        return merge;
     }
 
     /**
@@ -138,6 +154,48 @@ public class Test1 {
             arr[left + i1] = help[i1];
         }
         return arr;
+    }
+
+    /**
+     * 小和问题
+     * 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和
+     */
+    public static int process3(int[] arr, int left, int right) {
+        if (left == right) {
+            return 0;
+        }
+        int mid = left + ((right - left) >> 1);
+        //左侧小和
+        int L = process3(arr, left, mid);
+        //右侧小和
+        int R = process3(arr, mid + 1, right);
+        //合并以后的小和
+        int M = merge2(arr, left, right, mid);
+        System.out.println("L=="+L+",R=="+R+",==M=="+M);
+        return L+R+M;
+
+    }
+    public static int merge2(int[] arr, int left, int right, int mid) {
+        int[] help = new int[right - left + 1];
+        int p1 = left;
+        int p2 = mid + 1;
+        int i = 0;
+        int count = 0;
+        while (p1 <= mid && p2 <= right) {
+            count += arr[p1] < arr[p2] ? (right - p2 + 1) * arr[p1] : 0;
+            help[i++] = (arr[p1] <= arr[p2]) ? arr[p1++] : arr[p2++];
+        }
+        while (p1<=mid) {
+            help[i++] = arr[p1++];
+        }
+        while (p2 <= right) {
+            help[i++] = arr[p2++];
+        }
+        for (int i1 = 0; i1 < help.length; i1++) {
+            arr[left + i1] = help[i1];
+        }
+        return count;
+
     }
 
 
