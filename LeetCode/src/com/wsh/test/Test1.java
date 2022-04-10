@@ -30,6 +30,11 @@ public class Test1 {
         //小和问题
         int[] ints4 = {1,3,4,2,5};
         System.out.println("小和问题"+ process3(ints4, 0, 4));
+
+
+        //快速排序
+        int[] ints5 = {11,31,78,34,4,2,5};
+        quickSore(ints5,0,6);
     }
 
 
@@ -195,7 +200,49 @@ public class Test1 {
             arr[left + i1] = help[i1];
         }
         return count;
+    }
 
+    /**
+     * 快速排序
+     * @param arr
+     * @param left
+     * @param right
+     */
+    public static void quickSore(int[] arr, int left, int right) {
+        if (left < right) {
+            int l = left + (int) (Math.random() * right - left + 1);
+            swap(arr, l, right);
+            int[] partition =partition(arr, left, right);
+            quickSore(arr, left,partition[0]-1);
+            quickSore(arr, partition[1] + 1, right);
+
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println("qsort===" + arr[i]);
+            }
+        }
+    }
+
+    private static int[] partition(int[] arr, int left, int right) {
+        int less = left - 1;
+        int more = right;
+        while (left < more) {
+            if (arr[left] < arr[right]) {
+                swap(arr, ++less, left++);
+            } else if (arr[left] > arr[right]) {
+                swap(arr, --more, left);
+            } else {
+                left++;
+            }
+        }
+        swap(arr, more, right);
+        return new int[]{less + 1, more};
+    }
+
+    private static void swap(int[] arr, int left, int right) {
+        int a = 0;
+        a = arr[left];
+        arr[left] = arr[right];
+        arr[right] = a;
     }
 
 
