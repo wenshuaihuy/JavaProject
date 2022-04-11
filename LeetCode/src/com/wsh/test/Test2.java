@@ -47,7 +47,6 @@ public class Test2 {
         }
     }
 
-
     /**
      * 堆排序
      * @param arr
@@ -60,19 +59,13 @@ public class Test2 {
             //将堆变成大顶堆
             heapInsert(arr, i);
         }
-
         int heapSize = arr.length;
         swap(arr,0,heapSize-1);
         while (heapSize > 0) {
             heapify(arr, 0, heapSize);
             swap(arr,0,--heapSize);
-
-
         }
-
-
     }
-
 
 
     /**
