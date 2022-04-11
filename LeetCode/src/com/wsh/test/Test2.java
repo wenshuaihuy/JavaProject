@@ -19,7 +19,7 @@ public class Test2 {
         int fatherPort = (index - 1) / 2;
         //当前节点的数比父节点大的时候进行交换
         while (arr[index] > arr[fatherPort]) {
-            swap(arr,arr[index],fatherPort);
+            swap(arr,index,fatherPort);
             index = fatherPort;
         }
     }
