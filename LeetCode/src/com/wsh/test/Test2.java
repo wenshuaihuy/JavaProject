@@ -60,8 +60,10 @@ public class Test2 {
             heapInsert(arr, i);
         }
         int heapSize = arr.length;
+        //0上的数和最后一个数做交换
         swap(arr,0,heapSize-1);
         while (heapSize > 0) {
+            
             heapify(arr, 0, heapSize);
             swap(arr,0,--heapSize);
         }
