@@ -18,8 +18,8 @@
 <script>
     // window.location.reload(true);
 
-    window.location.href = '${pageContext.request.contextPath}/add';
-    <%--window.location.href='${pageContext.request.contextPath}/list';--%>
+    /*window.location.href = '${pageContext.request.contextPath}/add';*/
+    window.location.href='${pageContext.request.contextPath}/list';
 </script>
 
 </body>

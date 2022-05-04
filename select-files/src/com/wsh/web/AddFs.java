@@ -5,6 +5,8 @@ package com.wsh.web;
 
 
 
+import com.wsh.service.FsService;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,10 +29,10 @@ public class AddFs extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //测试
-//        System.out.println(22);
+        System.out.println(22);
         //调用Service层方法
-//        FsService fsService = new FsService();
-//        fsService.addFlow();
+        FsService fsService = new FsService();
+        fsService.addFlow();
 
         response.sendRedirect(request.getContextPath()+"/list");
     }
