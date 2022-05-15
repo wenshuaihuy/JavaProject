@@ -12,7 +12,7 @@ public class Node {
     public int foot;
 
     /**
-     *链表长度
+     * 链表长度
      */
     public int count;
 
@@ -22,11 +22,11 @@ public class Node {
     public Node root;
 
     /**
-     *数据
+     * 数据
      */
     public int data;
     /**
-     *节点
+     * 节点
      */
     public Node next;
 
@@ -36,6 +36,7 @@ public class Node {
 
     /**
      * 添加数据
+     *
      * @param data
      */
     private void add(int data) {
@@ -50,6 +51,44 @@ public class Node {
     private void remove(Node node, int index) {
 
     }
+
+    /**
+     * 反转单链表
+     *
+     * @param head
+     * @return
+     */
+    private static Node reverseNode(Node head) {
+        Node per = null;
+        Node next = null;
+        while (head != null) {
+            //保存当前节点的后续节点
+            next = head.next;
+            //改变当前节点的指向
+            head.next = per;
+            per = head;
+            head = next;
+        }
+        return per;
+    }
+
+    public static void printLinkedList(Node head) {
+        System.out.print("Linked List: ");
+        while (head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+
+    public static void main(String[] args) {
+        Node node = new Node(2);
+        Node node1 = Node.reverseNode(node);
+        printLinkedList(node1);
+
+    }
+
 
 
 }
