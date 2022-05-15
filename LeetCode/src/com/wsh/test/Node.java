@@ -6,20 +6,23 @@ package com.wsh.test;
  */
 public class Node {
 
-    /**
-     * 根节点索引位置
-     */
-    public int foot;
+    public class LinkNode {
+        /**
+         * 根节点索引位置
+         */
+        public int foot;
 
-    /**
-     * 链表长度
-     */
-    public int count;
+        /**
+         * 链表长度
+         */
+        public int count;
 
-    /**
-     * 头结点
-     */
-    public Node root;
+        /**
+         * 头结点
+         */
+        public Node root;
+    }
+
 
     /**
      * 数据
@@ -33,6 +36,20 @@ public class Node {
     public Node(int data) {
         this.data = data;
     }
+
+    /**
+     * 双链表
+     */
+    public class DoubleNode {
+        public int value;
+        public DoubleNode last;
+        public DoubleNode next;
+
+        public DoubleNode(int data) {
+            this.value = data;
+        }
+    }
+
 
     /**
      * 添加数据
@@ -70,6 +87,27 @@ public class Node {
             head = next;
         }
         return per;
+    }
+
+    /**
+     * 反转双链表
+     * @param head
+     * @return
+     */
+    public static DoubleNode reverseDoubleNode(DoubleNode head) {
+        DoubleNode pre = null;
+        DoubleNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            head.last = next;
+            pre = head;
+            head = next;
+        }
+        return pre;
+
+
+
     }
 
     public static void printLinkedList(Node head) {
