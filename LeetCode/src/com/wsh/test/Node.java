@@ -119,9 +119,27 @@ public class Node {
         System.out.println();
     }
 
+    public static void printDoubleLinkedList(DoubleNode head) {
+        System.out.print("Double Linked List: ");
+        DoubleNode end = null;
+        while (head != null) {
+            System.out.print(head.value + " ");
+            end = head;
+            head = head.next;
+        }
+        System.out.print("| ");
+        while (end != null) {
+            System.out.print(end.value + " ");
+            end = end.last;
+        }
+        System.out.println();
+    }
+
 
     public static void main(String[] args) {
         Node node = new Node(2);
+        node.next = new Node(3);
+        node.next.next = new Node(4);
         Node node1 = Node.reverseNode(node);
         printLinkedList(node1);
 
